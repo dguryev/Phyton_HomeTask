@@ -25,6 +25,10 @@ def savePhone(dph):
     with open("phoneBook.json", "w") as my_file:
         my_file.write(phnJson)
 
+def searchPhone(dph):
+    phnName = input("Введите имя -> ")
+    print(f"{" ".join(dph.get(phnName, []))}")
+
 def exitProgramm(dph):
     exit(0)
 
@@ -32,6 +36,7 @@ dCommand = {'1' : [printPhone, "Просмотр справочника"],
             '2' : [addPhone, "Добавить значение"],
             '3' : [delPhone, "Удалить значение"],
             '4' : [changePhone, "Изменить номер телефона"],
+            '5' : [searchPhone, "Поиск номера"],
             '6' : [savePhone, "Сохранить"],
             '7' : [exitProgramm, "Выход"]}
 
@@ -47,7 +52,7 @@ with open("phoneBook.json", "r") as my_file:
 dPhone = json.loads(phnJson)
 
 while True:
-    numCmd = input("Введите действие ")
+    numCmd = input("Введите действие -> ")
     comfunc=dCommand.get(numCmd)
     if (comfunc):
         comfunc[0](dPhone)
